@@ -53,7 +53,7 @@ import { author, buy } from '../sample'
             <img src={svgIdea.src} width="60" alt="idea" class="absolute top-16 -left-3 z-10" />   
             <img src={svgString.src} width="50" alt="string" class="absolute -top-6 -right-2 z-10" />             
           
-             <img src="/portfolio/khushi-photo.jpg" alt="Khushi" class="w-full h-[310px] border-2 object-cover" />
+             <div id="me" class="w-full h-[310px] border-2"></div>
              <Bars />
           </div>
         </div>
@@ -63,3 +63,11 @@ import { author, buy } from '../sample'
 
     <img src={svgPinkStar.src} alt="start" width="50" class="absolute -bottom-4" />
   </section>
+
+  <style>
+    #me{
+     background-image: url('https://images.pexels.com/photos/1858175/pexels-photo-1858175.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');
+     background-position: top;
+     background-size: cover;
+    }
+   </style>
