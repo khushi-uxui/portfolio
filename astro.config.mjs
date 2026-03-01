@@ -4,10 +4,10 @@ import tailwindcss from "@tailwindcss/vite";
 
 // https://astro.build/config
 export default defineConfig({
-  base: '/portfolio/',
-  site: 'https://khushiuxui.github.io',
+  redirects: {
+    "/": "https://www.behance.net/khushigautam3",
+  },
   vite: {
     plugins: [tailwindcss()],
   },
-  output: 'static',
 });
