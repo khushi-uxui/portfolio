@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Khushi Gautam — Portfolio</title>
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        html, body {
+            width: 100%; height: 100%;
+            overflow: hidden;
+            background: #0d0d0d;
+            font-family: sans-serif;
+        }
+
+        /* ── Steps ─────────────────────────────────────────── */
+        .step {
+            width: 1920px;
+            height: 1080px;
+            position: relative;
+            overflow: hidden;
+        }
+        .step img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            pointer-events: none;
+        }
+
+        /* Fade inactive steps */
+        .step { opacity: 0.2; transition: opacity 0.8s; }
+        .step.active { opacity: 1; }
+
+        /* Hide before init */
+        .impress-not-supported .step { display: none; }
+
+        /* ── Hotspot buttons on slide 5 ────────────────────── */
+        .hotspot {
+            position: absolute;
+            display: block;
+            border-radius: 50%;
+            background: rgba(226, 30, 30, 0.05);
+            border: 2px solid rgba(226, 30, 30, 0.25);
+            cursor: pointer;
+            z-index: 10;
+            transition: background 0.3s, border-color 0.3s, box-shadow 0.3s, transform 0.3s;
+        }
+        .hotspot:hover {
+            background: rgba(226, 30, 30, 0.15);
+            border-color: rgba(226, 30, 30, 0.6);
+            box-shadow: 0 0 24px rgba(226, 30, 30, 0.4);
+            transform: scale(1.08);
+        }
+
+        /* ── Navigation buttons on branch slides ──────────── */
+        .nav-bar {
+            display: none;
+        }
+        .nav-btn {
+            padding: 10px 24px;
+            border: 2px solid rgba(0,0,0,0.3);
+            border-radius: 30px;
+            background: rgba(255,255,255,0.85);
+            color: #222;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s, border-color 0.2s, transform 0.2s;
+            text-decoration: none;
+            display: inline-block;
+            pointer-events: auto;
+            position: relative;
+            z-index: 200;
+        }
+        .nav-btn:hover {
+            background: #e41e1e;
+            color: #fff;
+            border-color: #e41e1e;
+            transform: scale(1.05);
+        }
+
+        /* ── Slide dots (main path only) ──────────────────── */
+        .slide-dots {
+            position: fixed;
+            bottom: 24px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 8px;
+            z-index: 1000;
+            transition: opacity 0.4s;
+        }
+        .slide-dots.hidden { opacity: 0; pointer-events: none; }
+        .slide-dots span {
+            width: 10px; height: 10px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.35);
+            transition: background 0.3s, transform 0.3s;
+            cursor: pointer;
+        }
+        .slide-dots span.active {
+            background: #e41e1e;
+            transform: scale(1.4);
+        }
+
+        /* ── Contact link overlays ─────────────────────────── */
+        .contact-link {
+            position: absolute;
+            z-index: 10;
+            display: block;
+            /* border: 2px solid rgba(226, 30, 30, 0.5); */
+        }
+    </style>
+</head>
+<body>
+
+<div id="impress"
+     data-transition-duration="1200"
+     data-width="1920"
+     data-height="1080"
+     data-perspective="1200"
+     data-autoplay="0">
+
+    <!-- ═══ MAIN PATH ═══════════════════════════════════════ -->
+
+    <!-- Slide 1: Intro -->
+    <div id="intro" class="step" data-x="0" data-y="0" data-z="0" data-scale="1">
+        <img src="1.jpg" alt="Hi, I'm Khushi">
+    </div>
+
+    <!-- Slide 2: Brain before pixel -->
+    <div id="brain" class="step" data-x="1920" data-y="0" data-z="0" data-scale="1">
+        <img src="2.jpg" alt="My Brain Before the First Pixel">
+    </div>
+
+    <!-- ═══ BRANCH A: depth dive from slide 2 ══════════════ -->
+
+    <!-- Slide 3: Automated test (z-dive behind slide 2) -->
+    <div id="test-workflow" class="step" data-x="1920" data-y="1080" data-z="0" data-scale="1">
+        <img src="3.jpg" alt="Automated Test Workflow">
+        <div class="nav-bar">
+            <a class="nav-btn" data-goto="brain">← Back</a>
+            <a class="nav-btn" data-goto="b2b-saas">Next →</a>
+        </div>
+    </div>
+
+    <!-- Slide 4: B2B SaaS (slide right at same depth) -->
+    <div id="b2b-saas" class="step" data-x="1920" data-y="2160" data-z="0" data-scale="1">
+        <img src="4.jpg" alt="B2B SaaS Team Video">
+        <div class="nav-bar">
+            <a class="nav-btn" data-goto="test-workflow">← Back</a>
+            <a class="nav-btn" data-goto="process">Continue →</a>
+        </div>
+    </div>
+
+    <!-- ═══ MAIN PATH continues ════════════════════════════ -->
+
+    <!-- Slide 5: Design process hub -->
+    <div id="process" class="step" data-x="3840" data-y="0" data-z="0" data-scale="1">
+        <img src="5.jpg" alt="Inside My Design Process">
+        <!-- Hotspot buttons over the 4 circles -->
+        <a class="hotspot" data-goto="discover" style="left:5%;  top:33%; width:10%; height:18%;"></a>
+        <a class="hotspot" data-goto="define"   style="left:21%; top:16%; width:10%; height:18%;"></a>
+        <a class="hotspot" data-goto="design"   style="left:46%; top:12%; width:10%; height:18%;"></a>
+        <a class="hotspot" data-goto="deliver"   style="left:69%; top:33%; width:10%; height:18%;"></a>
+    </div>
+
+    <!-- ═══ BRANCH B: behind slide 5 (skip class) ══════════ -->
+
+    <!-- Slide 6: Discover -->
+    <div id="discover" class="step" data-x="3840" data-y="0" data-z="-2000" data-scale="1">
+        <img src="6.jpg" alt="Discover">
+        <div class="nav-bar">
+            <a class="nav-btn" data-goto="process">← Back to Process</a>
+            <a class="nav-btn" data-goto="define">Define →</a>
+        </div>
+    </div>
+
+    <!-- Slide 7: Define -->
+    <div id="define" class="step" data-x="3840" data-y="0" data-z="-4000" data-scale="1">
+        <img src="7.jpg" alt="Define">
+        <div class="nav-bar">
+            <a class="nav-btn" data-goto="process">← Back to Process</a>
+            <a class="nav-btn" data-goto="discover">← Discover</a>
+            <a class="nav-btn" data-goto="design">Design →</a>
+        </div>
+    </div>
+
+    <!-- Slide 8: Design -->
+    <div id="design" class="step" data-x="3840" data-y="0" data-z="-6000" data-scale="1">
+        <img src="8.jpg" alt="Design">
+        <div class="nav-bar">
+            <a class="nav-btn" data-goto="process">← Back to Process</a>
+            <a class="nav-btn" data-goto="define">← Define</a>
+            <a class="nav-btn" data-goto="deliver">Deliver →</a>
+        </div>
+    </div>
+
+    <!-- Slide 9: Deliver -->
+    <div id="deliver" class="step" data-x="3840" data-y="0" data-z="-8000" data-scale="1">
+        <img src="9.jpg" alt="Deliver">
+        <div class="nav-bar">
+            <a class="nav-btn" data-goto="process">← Back to Process</a>
+            <a class="nav-btn" data-goto="design">← Design</a>
+            <a class="nav-btn" data-goto="creative">Continue →</a>
+        </div>
+    </div>
+
+    <!-- ═══ MAIN PATH continues ════════════════════════════ -->
+
+    <!-- Slide 10: Creative organized -->
+    <div id="creative" class="step" data-x="5760" data-y="0" data-z="0" data-scale="1">
+        <img src="10.jpg" alt="Creative Doesn't Have to Be Chaotic">
+    </div>
+
+    <!-- Slide 11: AI trust -->
+    <div id="ai-trust" class="step" data-x="7680" data-y="0" data-z="0" data-scale="1">
+        <img src="11.jpg" alt="Designing AI You Can Trust">
+    </div>
+
+    <!-- Slide 12: Team sport -->
+    <div id="team" class="step" data-x="9600" data-y="0" data-z="0" data-scale="1">
+        <img src="12.jpg" alt="Great Products Are a Team Sport">
+    </div>
+
+    <!-- Slide 15: Contact -->
+    <div id="contact" class="step" data-x="11520" data-y="0" data-z="0" data-scale="1">
+        <img src="15.jpg" alt="See More of My Work">
+        <a href="https://www.behance.net/khushigautam3" target="_blank" class="contact-link" style="top:15%;left:43%;width:48%;height:30%;"></a>
+        <a href="https://www.linkedin.com/in/khushi-g20/" target="_blank" class="contact-link" style="top:56%;left:45%;width:20%;height:7%;"></a>
+        <a href="tel:+916307088928" class="contact-link" style="top:69%;left:45%;width:32%;height:7%;"></a>
+        <a href="mailto:khushigautam1357@gmail.com" class="contact-link" style="top:82%;left:45%;width:45%;height:7%;"></a>
+    </div>
+
+</div>
+
+<!-- Dots: main path only -->
+<div class="slide-dots" id="dots"></div>
+
+<script src="impress.min.js"></script>
+<script>
+(function () {
+    var api = impress();
+    api.init();
+
+    // ── All slides in order ───────────────────────────────
+    var allIds = ['intro', 'brain', 'test-workflow', 'b2b-saas', 'process',
+                  'discover', 'define', 'design', 'deliver',
+                  'creative', 'ai-trust', 'team', 'contact'];
+
+    // ── Build dots ────────────────────────────────────────
+    var dotsContainer = document.getElementById('dots');
+    var dots = [];
+    allIds.forEach(function (id) {
+        var dot = document.createElement('span');
+        dot.addEventListener('click', function () { api.goto(id); });
+        dotsContainer.appendChild(dot);
+        dots.push({ el: dot, id: id });
+    });
+
+    function updateDots() {
+        var active = document.querySelector('.step.active');
+        var activeId = active ? active.id : '';
+        dots.forEach(function (d) {
+            d.el.className = (d.id === activeId) ? 'active' : '';
+        });
+    }
+    document.addEventListener('impress:stepenter', updateDots);
+    updateDots();
+
+    // ── Scroll-wheel navigation ───────────────────────────
+    var lastWheel = 0;
+    document.addEventListener('wheel', function (e) {
+        e.preventDefault();
+        var now = Date.now();
+        if (now - lastWheel < 900) return;
+        lastWheel = now;
+        if (e.deltaY > 0) api.next();
+        else api.prev();
+    }, { passive: false });
+
+    // ── Button navigation (data-goto) ─────────────────────
+    var allGotos = document.querySelectorAll('[data-goto]');
+    allGotos.forEach(function (btn) {
+        btn.addEventListener('click', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            api.goto(btn.getAttribute('data-goto'));
+        });
+        btn.addEventListener('touchend', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            api.goto(btn.getAttribute('data-goto'));
+        });
+    });
+
+})();
+</script>
+</body>
+</html>
