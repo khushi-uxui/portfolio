@@ -160,11 +160,6 @@
     <!-- Slide 5: Design process hub -->
     <div id="process" class="step" data-x="3840" data-y="0" data-z="0" data-scale="1">
         <img src="5.jpg" alt="Inside My Design Process">
-        <!-- Hotspot buttons over the 4 circles -->
-        <a class="hotspot" data-goto="discover" style="left:5%;  top:33%; width:10%; height:18%;"></a>
-        <a class="hotspot" data-goto="define"   style="left:21%; top:16%; width:10%; height:18%;"></a>
-        <a class="hotspot" data-goto="design"   style="left:46%; top:12%; width:10%; height:18%;"></a>
-        <a class="hotspot" data-goto="deliver"   style="left:69%; top:33%; width:10%; height:18%;"></a>
     </div>
 
     <!-- ═══ BRANCH B: behind slide 5 (skip class) ══════════ -->
@@ -271,14 +266,17 @@
     updateDots();
 
     // ── Scroll-wheel navigation ───────────────────────────
-    var lastWheel = 0;
+    var transitioning = false;
+    var TRANSITION_DURATION = 1200;
+    var TRANSITION_DELAY    = TRANSITION_DURATION / 2;
+    var TRANSITION_TOTAL    = TRANSITION_DURATION + TRANSITION_DELAY;
     document.addEventListener('wheel', function (e) {
         e.preventDefault();
-        var now = Date.now();
-        if (now - lastWheel < 900) return;
-        lastWheel = now;
+        if (transitioning) return;
+        transitioning = true;
         if (e.deltaY > 0) api.next();
         else api.prev();
+        setTimeout(function () { transitioning = false; }, TRANSITION_TOTAL);
     }, { passive: false });
 
     // ── Button navigation (data-goto) ─────────────────────
